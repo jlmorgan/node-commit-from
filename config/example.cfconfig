@@ -1,0 +1,12 @@
+[github]
+  issuePrefix = issue-
+  template = ~/.gittemplates/github.txt
+
+[jira]
+  apiVersion = 2
+  host =
+  password = 
+  protocol = https
+  strictSSL = true
+  template = ~/.gittemplates/jira.txt
+  username =

@@ -1,0 +1,6 @@
+Issue-{{number}}: {{title}}
+
+Closes #{{number}}
+{{#each labels}}
+{{name}}
+{{/each}}
