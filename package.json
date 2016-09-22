@@ -1,0 +1,45 @@
+{
+  "name": "commit-from",
+  "description": "Create a commit message from ticket details from issue sources.",
+  "keywords": [
+    "commit",
+    "github",
+    "jira"
+  ],
+  "author": {
+    "name": "Justin Morgan",
+    "email": "justin.l.morgan@gmail.com"
+  },
+  "license": "MIT",
+  "version": "0.0.0",
+  "bin": {
+    "commit-from": "bin/commit-from"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jlmorgan/node-commit-from.git"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "handlebars": "^4.0.5",
+    "include": "^1.1.0",
+    "lodash": "^4.16.1",
+    "lodash-fantasy": "^0.1.1",
+    "properties": "^1.2.1",
+    "request": "^2.75.0",
+    "yargs": "^5.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.2.2",
+    "jscs": "^3.0.7"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "scripts": {
+    "build": "npm run checkstyle && npm run lint",
+    "checkstyle": "jscs lib src",
+    "install": "node src/install",
+    "lint": "eslint lib src"
+  }
+}

@@ -1,0 +1,15 @@
+{{key}}: {{fields.summary}}
+
+{{#each fields.labels}}
+{{this}}
+{{/each}}
+{{#each fields.issuelinks}}
+{{#if outwardIssue.id}}
+{{type.outward}}:{{outwardIssue.key}}
+{{/if}}
+{{/each}}
+{{#if fields.SemVer}}
+SemVer:{{fields.SemVer.value}}
+{{else}}
+SemVer:None
+{{/if}}
