@@ -23,6 +23,7 @@
     "bluebird": "^3.4.6",
     "handlebars": "^4.0.5",
     "include": "^1.1.0",
+    "jira-client": "^3.0.4",
     "lodash": "^4.16.1",
     "lodash-fantasy": "^0.1.1",
     "properties": "^1.2.1",
