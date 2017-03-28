@@ -14,6 +14,7 @@ const zipObject = require("lodash/fp/zipObject");
 
 module.exports = flow(
   trim,
+  replace(/^git@github\.com:/, "https://github.com/"),
   replace(/\.git$/, ""),
   url.parse,
   get("path"),
