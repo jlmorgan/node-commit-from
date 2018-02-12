@@ -67,5 +67,6 @@ module.exports = (config, argv) => validateConfig(get("jira", config))
   )(data))
   .catch(flow(
     error => isArray(error) ? error.join("\n") : getOr(error, "response.statusMessage", error),
-    console.error
+    console.error,
+    () => process.exitCode = 1
   ));

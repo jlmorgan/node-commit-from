@@ -64,4 +64,7 @@ module.exports = (config, argv) => Promise.resolve(argv)
       console.log
     ))
   )
-  .catch(console.error);
+  .catch(flow(
+    console.error,
+    () => process.exitCode = 1
+  ));
