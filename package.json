@@ -11,7 +11,7 @@
     "email": "justin.l.morgan@gmail.com"
   },
   "license": "MIT",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "bin": {
     "commit-from": "bin/commit-from"
   },
