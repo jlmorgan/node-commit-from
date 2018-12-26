@@ -20,18 +20,18 @@
     "url": "https://github.com/jlmorgan/node-commit-from.git"
   },
   "dependencies": {
-    "bluebird": "^3.4.6",
-    "handlebars": "^4.0.5",
+    "bluebird": "^3.5.3",
+    "handlebars": "^4.0.12",
     "include": "^1.1.0",
-    "jira-client": "^3.0.4",
-    "lodash": "^4.16.1",
-    "lodash-fantasy": "^0.1.1",
+    "jira-client": "^6.4.1",
+    "lodash": "^4.17.11",
+    "lodash-fantasy": "^1.0.1",
     "properties": "^1.2.1",
-    "request": "^2.75.0",
-    "yargs": "^5.0.0"
+    "request": "^2.88.0",
+    "yargs": "^12.0.5"
   },
   "devDependencies": {
-    "eslint": "^3.2.2",
+    "eslint": "^5.11.0",
     "jscs": "^3.0.7"
   },
   "engines": {
