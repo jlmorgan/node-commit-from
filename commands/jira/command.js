@@ -43,7 +43,7 @@ const validateConfig = require("./validateConfig");
  * @param {Object} argv - CLI argument key-value pairs.
  */
 module.exports = (config, argv) => validateConfig(get("jira", config))
-  .toPromiseWith(Promise)
+  .toPromise(Promise)
   .then(flow(
     pick(jiraClientOptions),
     options => new JiraApi(options)

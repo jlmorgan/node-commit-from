@@ -8,6 +8,6 @@ const flow = require("lodash/fp/flow");
 const replace = require("lodash/fp/replace");
 
 module.exports = flow(
-  replace(/^\.\//, `${process.cwd()}/`),
-  replace(/^~/, os.homedir())
+  replace(/^\.\//u, `${process.cwd()}/`),
+  replace(/^~/u, os.homedir())
 );
