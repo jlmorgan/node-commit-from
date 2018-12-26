@@ -14,6 +14,7 @@ const createApiRepoUrl = require("./createApiRepoUrl");
 const getIssuesUrl = require("./getIssuesUrl");
 const getRepoRemoteUrl = require("./getRepoRemoteUrl");
 const handleIssueResponse = require("./handleIssueResponse");
+const handleRequestErrors = require("./handleRequestErrors");
 const readFile = include("lib/fs/readFile");
 const request = include("lib/request");
 const resolveFilePath = include("src/util/resolveFilePath");
@@ -46,6 +47,7 @@ module.exports = (config, argv) => Promise.resolve(argv)
       applyRequestOptions,
       request
     ))
+    .then(handleRequestErrors)
     .then(getIssuesUrl(config, values))
   )
   .then(flow(
@@ -53,6 +55,7 @@ module.exports = (config, argv) => Promise.resolve(argv)
     applyRequestOptions,
     request
   ))
+  .then(handleRequestErrors)
   .then(handleIssueResponse)
   .then(data => readFile(
       resolveFilePath(getOr(get("github.template", config), "template", argv)),
