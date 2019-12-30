@@ -1,21 +1,19 @@
 "use strict";
 
 // Third Party
-const stream = require("lodash/fp");
+const F = require("lodash/fp");
 const Validation = require("lodash-fantasy/data/Validation");
 
-// Third Party Aliases
-const Failure = Validation.Failure;
-const get = stream.get;
-const Success = Validation.Success;
-
+// Project
 const rules = require("./rules");
 
-module.exports = function (config) {
-  return stream(rules)
-    .map(rule => rule.predicate(get(rule.property, config)) ?
+module.exports = function validate(config) {
+  const { Failure, Success } = Validation;
+
+  return F(rules)
+    .map(rule => (rule.predicate(F.get(rule.property, config)) ?
       Success.from(config) :
-      Failure.from(rule.predicate(rule.property))
-    )
+      Failure.from(rule.message(F.get(rule.property, config)))
+    ))
     .reduce(Validation.concat);
 };

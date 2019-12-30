@@ -7,3 +7,4 @@ npm-debug.log
 config/*
 !config/*.example
 !config/example.*
+!bin/commit-from

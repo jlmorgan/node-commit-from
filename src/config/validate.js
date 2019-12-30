@@ -4,7 +4,6 @@
 const { lstatSync } = require("fs");
 
 // Third Party
-const include = require("include")(__dirname);
 const Promise = require("bluebird");
 const F = require("lodash/fp");
 const Validation = require("lodash-fantasy/data/Validation");
@@ -14,7 +13,7 @@ const isNotEmpty = F.negate(F.isEmpty);
 
 // Project
 const filePaths = require("./filePaths");
-const getValue = include("src/util/getValue");
+const getValue = require("../../src/util/getValue");
 
 module.exports = config => Validation.reduce(
   Validation.concat,
@@ -22,8 +21,7 @@ module.exports = config => Validation.reduce(
   F(filePaths)
     .map(getValue(config))
     .filter(isNotEmpty)
-    /* eslint-disable no-sync */
-    .map(filePath => () => lstatSync(filePath))
+    .map(filePath => () => lstatSync(filePath)) // eslint-disable-line no-sync
     .map(Validation.try)
     .value()
 )

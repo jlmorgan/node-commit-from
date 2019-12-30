@@ -1,12 +1,14 @@
 [github]
   issuePrefix = issue-
   template = ~/.gittemplates/github.txt
+  timeout =
 
 [jira]
   apiVersion = 2
-  host =
-  password = 
+  host = jira.somehost.com
+  password = P@s$W()rD
   protocol = https
   strictSSL = true
   template = ~/.gittemplates/jira.txt
-  username =
+  timeout = 75000
+  username = someuser

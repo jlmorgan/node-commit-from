@@ -5,8 +5,22 @@
     "node": true
   },
   "extends": "eslint:recommended",
+  "overrides": [
+    {
+      "files": ["test/**/*.js"],
+      "rules": {
+        "max-lines": "off",
+        "max-lines-per-function": "off",
+        "max-nested-callbacks": "off",
+        "no-invalid-this": "off",
+        "no-undefined": "off",
+        "no-unused-expressions": "off",
+        "require-jsdoc": "off"
+      }
+    }
+  ],
   "parserOptions": {
-    "ecmaVersion": 2015
+    "ecmaVersion": 2017
   },
   "rules": {
     "accessor-pairs": "off",
@@ -24,10 +38,7 @@
     "array-callback-return": "error",
     "array-element-newline": [
       "error",
-      {
-        "minItems": 2,
-        "multiline": true
-      }
+      "consistent"
     ],
     "arrow-body-style": [
       "error",
@@ -60,7 +71,7 @@
         "ignoreInlineComments": true
       }
     ],
-    "class-methods-use-this": "error",
+    "class-methods-use-this": "off",
     "comma-dangle": [
       "error",
       "never"
@@ -215,7 +226,7 @@
       "warn",
       {
         "IIFEs": false,
-        "max": 20,
+        "max": 50,
         "skipBlankLines": true,
         "skipComments": true
       }
@@ -279,7 +290,7 @@
         "allowParens": true
       }
     ],
-    "no-console": "warn",
+    "no-console": "off",
     "no-constant-condition": "warn",
     "no-continue": "error",
     "no-control-regex": "warn",
@@ -329,7 +340,13 @@
     "no-lone-blocks": "error",
     "no-lonely-if": "error",
     "no-loop-func": "error",
-    "no-magic-numbers": "error",
+    "no-magic-numbers": [
+      "error",
+      {
+        "ignore": [-1, 0, 1, 2],
+        "ignoreArrayIndexes": true
+      }
+    ],
     "no-misleading-character-class": "error",
     "no-mixed-operators": "error",
     "no-mixed-requires": "error",
@@ -410,15 +427,14 @@
     "no-useless-return": "error",
     "no-var": "error",
     "no-void": "warn",
-    "no-warning-comments": "warn",
+    "no-warning-comments": "off",
     "no-whitespace-before-property": "error",
     "no-with": "error",
     "nonblock-statement-body-position": "error",
     "object-curly-newline": [
       "error",
       {
-        "minProperties": 2,
-        "multiline": true
+        "consistent": true
       }
     ],
     "object-curly-spacing": [
@@ -428,7 +444,7 @@
     "object-property-newline": "error",
     "object-shorthand": [
       "error",
-      "always"
+      "methods"
     ],
     "one-var": [
       "error",
@@ -569,7 +585,11 @@
     ],
     "space-before-function-paren": [
       "error",
-      "never"
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
     ],
     "space-in-parens": [
       "error",
