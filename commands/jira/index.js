@@ -3,6 +3,9 @@
 // Third Party
 const options = require("./options");
 
+// Project
+const handler = require("./command");
+
 module.exports = config => ({
   builder: yargs => yargs
     .example("$0 jira issue-1")
@@ -10,5 +13,5 @@ module.exports = config => ({
     .options(options),
   command: "jira <issueId>",
   describe: "Create commit message from Jira.",
-  handler: argv => require("./command")(config, argv) // Lazy evaluation
+  handler: argv => handler(config, argv)
 });

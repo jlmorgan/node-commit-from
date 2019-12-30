@@ -11,7 +11,7 @@
     "email": "justin.l.morgan@gmail.com"
   },
   "license": "MIT",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "bin": {
     "commit-from": "bin/commit-from"
   },
@@ -20,26 +20,24 @@
     "url": "https://github.com/jlmorgan/node-commit-from.git"
   },
   "dependencies": {
-    "bluebird": "^3.5.5",
-    "handlebars": "^4.1.2",
-    "include": "^1.1.0",
-    "jira-client": "^6.7.1",
-    "lodash": "^4.17.11",
+    "bluebird": "^3.7.2",
+    "entities": "^2.0.0",
+    "handlebars": "^4.5.3",
+    "jira-client": "^6.14.0",
+    "lodash": "^4.17.15",
     "lodash-fantasy": "^1.0.1",
     "properties": "^1.2.1",
     "request": "^2.88.0",
-    "yargs": "^13.2.4"
+    "yargs": "^15.0.2"
   },
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "jscs": "^3.0.7"
+    "eslint": "^6.8.0"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=8.0.0"
   },
   "scripts": {
-    "build": "npm run checkstyle && npm run lint",
-    "checkstyle": "jscs lib src",
+    "build": "npm run lint",
     "install": "node src/install",
     "lint": "eslint lib src"
   }

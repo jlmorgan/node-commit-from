@@ -1,22 +1,22 @@
 "use strict";
 
 // Node
-const url = require("url");
+const { parse } = require("url");
 
 // Third Party
 const compact = require("lodash/fp/compact");
-const flow = require("lodash/fp/flow");
 const get = require("lodash/fp/get");
+const pipe = require("lodash/fp/pipe");
 const replace = require("lodash/fp/replace");
 const split = require("lodash/fp/split");
 const trim = require("lodash/fp/trim");
 const zipObject = require("lodash/fp/zipObject");
 
-module.exports = flow(
+module.exports = pipe(
   trim,
-  replace(/^git@github\.com:/, "https://github.com/"),
-  replace(/\.git$/, ""),
-  url.parse,
+  replace(/^git@github\.com:/u, "https://github.com/"),
+  replace(/\.git$/u, ""),
+  parse,
   get("path"),
   split("/"),
   compact,

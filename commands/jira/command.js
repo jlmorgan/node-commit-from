@@ -1,14 +1,14 @@
 "use strict";
 
 // Third Party
-const flow = require("lodash/fp/flow");
+const entities = require("entities");
 const get = require("lodash/fp/get");
 const getOr = require("lodash/fp/getOr");
 const handlebars = require("handlebars");
-const include = require("include")(__dirname);
 const isArray = require("lodash/fp/isArray");
 const JiraApi = require("jira-client");
 const pick = require("lodash/fp/pick");
+const pipe = require("lodash/fp/pipe");
 const Promise = require("bluebird");
 const spread = require("lodash/fp/spread");
 const values = require("lodash/fp/values");
@@ -16,10 +16,10 @@ const zipObject = require("lodash/fp/zipObject");
 
 // Project
 const jiraClientOptions = require("./clientOptions");
-const mapCustomFieldKeys = include("src/jira/mapCustomFieldKeys");
-const readFile = include("lib/fs/readFile");
-const setValue = include("src/util/setValue");
-const resolveFilePath = include("src/util/resolveFilePath");
+const mapCustomFieldKeys = require("../../src/jira/mapCustomFieldKeys");
+const readFile = require("../../lib/fs/readFile");
+const setValue = require("../../src/util/setValue");
+const resolveFilePath = require("../../src/util/resolveFilePath");
 const validateConfig = require("./validateConfig");
 
 /**
@@ -39,12 +39,14 @@ const validateConfig = require("./validateConfig");
  *   10. Compile the template.
  *   11. Apply the data.
  *   12. Log the result.
+ *
  * @param {Object} config - Application configuration.
  * @param {Object} argv - CLI argument key-value pairs.
+ * @return {Promise.<String>}
  */
 module.exports = (config, argv) => validateConfig(get("jira", config))
   .toPromise(Promise)
-  .then(flow(
+  .then(pipe(
     pick(jiraClientOptions),
     options => new JiraApi(options)
   ))
@@ -56,17 +58,21 @@ module.exports = (config, argv) => validateConfig(get("jira", config))
       "utf8"
     )
   ]))
+  .catch(error => Promise.reject(error.message))
   .then(zipObject(["issue", "fields", "template"]))
-  .then(data => flow(
+  .then(data => pipe(
     pick(["issue", "fields"]),
     values,
     spread(mapCustomFieldKeys),
     setValue("fields", get("issue", data)),
     handlebars.compile(get("template", data)),
+    entities.decode,
     console.log
   )(data))
-  .catch(flow(
-    error => isArray(error) ? error.join("\n") : getOr(error, "response.statusMessage", error),
+  .catch(pipe(
+    error => (isArray(error) ? error.join("\n") : getOr(error, "response.statusMessage", error)),
     console.error,
-    () => process.exitCode = 1
+    () => {
+      process.exitCode = 1;
+    }
   ));

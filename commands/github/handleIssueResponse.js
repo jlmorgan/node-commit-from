@@ -3,6 +3,15 @@
 // Third Party
 const get = require("lodash/fp/get");
 
-module.exports = response => get("statusCode", response) == 200 ?
+/**
+ * HTTP status Success: OK.
+ *
+ * @private
+ * @type {Number}
+ */
+const OK = 200;
+
+module.exports = response => (get("statusCode", response) === OK ?
   response :
-  Promise.reject(get("body.message", response));
+  Promise.reject(get("body.message", response))
+);

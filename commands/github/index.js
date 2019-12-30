@@ -1,8 +1,9 @@
 "use strict";
 
 // Project
-const validateIssueSource = require("./validateIssueSource");
+const handler = require("./command");
 const options = require("./options");
+const validateIssueSource = require("./validateIssueSource");
 
 module.exports = config => ({
   builder: yargs => yargs
@@ -15,5 +16,5 @@ module.exports = config => ({
     .options(options),
   command: "github <issueId>",
   describe: "Create commit message from GitHub.",
-  handler: argv => require("./command")(config, argv) // Lazy evaluation
+  handler: argv => handler(config, argv)
 });

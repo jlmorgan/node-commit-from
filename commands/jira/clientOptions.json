@@ -4,5 +4,6 @@
   "password",
   "protocol",
   "strictSSL",
-  "username"
+  "username",
+  "timeout"
 ]

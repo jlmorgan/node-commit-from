@@ -1,8 +1,8 @@
 "use strict";
 
 // Third Party
-const flow = require("lodash/fp/flow");
 const get = require("lodash/fp/get");
+const pipe = require("lodash/fp/pipe");
 const Promise = require("bluebird");
 
 /**
@@ -37,7 +37,7 @@ const UNKNOWN_ERROR = 600;
  * @param {Object} response - HTTP response.
  * @returns {Promise}
  */
-const handleClientErrors = flow(
+const handleClientErrors = pipe(
   get("body.message"),
   Promise.reject
 );
@@ -50,7 +50,7 @@ const handleClientErrors = flow(
  * @param {Object} response - HTTP response.
  * @returns {Promise}
  */
-const handleServerErrors = flow(
+const handleServerErrors = pipe(
   get("statusMessage"),
   Promise.reject
 );

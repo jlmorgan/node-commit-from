@@ -9,7 +9,6 @@ const getExamplePath = require("./config/getExamplePath");
 
 const fileOptions = { mode: 0o600 };
 
-/* eslint-disable no-console */
 fs.lstat(getConfigFilePath(), lstatError => (lstatError ?
   fs.readFile(getExamplePath(), (readError, exampleData) => (readError ?
     console.error(`Example config not found in ${getExamplePath()}`) :

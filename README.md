@@ -22,7 +22,7 @@ Install [node.js][] 4+.
 ### Install via NPM
 
 ```bash
-$ npm install -g commit-from
+npm install -g commit-from
 ```
 
 ## Configuration
@@ -35,6 +35,7 @@ Configuration is provided from the `.cfconfig` file in the user's home directory
 [github]
   issuePrefix = issue-
   template = ~/.gittemplates/github.txt
+  timeout = 75000
 
 [jira]
   apiVersion = 2
@@ -43,13 +44,14 @@ Configuration is provided from the `.cfconfig` file in the user's home directory
   protocol = https
   strictSSL = true
   template = ~/.gittemplates/jira.txt
+  timeout = 75000
   username = someuser
 ```
 
 ## Help
 
 ```bash
-$ commit-from -h
+commit-from -h
 ```
 
 ## Git Aliases
@@ -85,17 +87,17 @@ $ commit-from -h
 ## Creating a Git Commit
 
 ```bash
-$ git add <files>
-$ git cfg # From GitHub
-$ git cfj # From Jira
+git add <files>
+git cfg # From GitHub
+git cfj # From Jira
 
 # or commit all the things
-$ git cafg
-$ git cafj
+git cafg
+git cafj
 
 # use a custom template
-$ git cfg -t /path/to/template.txt
-$ git cfj -t /path/to/template.txt
+git cfg -t /path/to/template.txt
+git cfj -t /path/to/template.txt
 ```
 
 [node.js]: https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager

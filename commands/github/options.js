@@ -10,14 +10,14 @@ module.exports = {
   },
   "p": {
     "alias": "parent",
-    "coerce": value => value ? "parent" : "",
+    "coerce": value => (value ? "parent" : ""),
     "describe": "Immediate parent repository in the fork chain.",
     "group": "Issue source:",
     "type": "boolean"
   },
   "s": {
     "alias": "source",
-    "coerce": value => value ? "source" : "",
+    "coerce": value => (value ? "source" : ""),
     "describe": "Source repository in the fork chain.",
     "group": "Issue source:",
     "type": "boolean"

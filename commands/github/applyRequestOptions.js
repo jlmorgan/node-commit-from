@@ -1,15 +1,14 @@
 "use strict";
 
 // Third Party
-const include = require("include")(__dirname);
-const flow = require("lodash/fp/flow");
+const pipe = require("lodash/fp/pipe");
 const set = require("lodash/fp/set");
 
 // Project
-const pkg = include("package");
+const { name, version } = require("../../package");
 
-module.exports = flow(
-  set("headers.user-agent", `${pkg.name}/${pkg.version}`),
+module.exports = pipe(
+  set("headers.user-agent", `${name}/${version}`),
   set("json", true),
   set("method", "GET")
 );

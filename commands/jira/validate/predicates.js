@@ -10,11 +10,6 @@ const negate = require("lodash/fp/negate");
 const isNotEmpty = negate(isEmpty);
 
 module.exports = {
-  isPopulatedString(value) {
-    return isString(value) && isNotEmpty(value);
-  },
-
-  isPositiveInteger(value) {
-    return isInteger(value) && value > 0;
-  }
+  isPopulatedString: value => isString(value) && isNotEmpty(value),
+  isPositiveInteger: value => isInteger(value) && value > 0
 };
