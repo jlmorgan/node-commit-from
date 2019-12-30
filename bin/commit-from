@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+"use strict";
+
+// Third Party
+const yargs = require("yargs");
+
+// Project
+const jira = require("../commands/jira");
+const github = require("../commands/github");
+const loadConfig = require("../src/config/load");
+
+loadConfig()
+  .then(config => yargs.usage("$0 <command>")
+    .command(github(config))
+    .command(jira(config))
+    .help("h")
+    .alias("h", "help")
+    .alias("v", "version")
+    .version()
+    .strict()
+    .wrap(yargs.terminalWidth())
+    .argv
+  )
+  .catch(console.error);
