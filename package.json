@@ -11,7 +11,7 @@
     "email": "justin.l.morgan@gmail.com"
   },
   "license": "MIT",
-  "version": "0.4.0-alpha",
+  "version": "0.5.0",
   "bin": {
     "commit-from": "bin/commit-from"
   },
@@ -34,7 +34,7 @@
     "eslint": "^6.8.0"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=8.0.0"
   },
   "scripts": {
     "build": "npm run lint",
