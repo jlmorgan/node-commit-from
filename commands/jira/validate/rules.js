@@ -7,22 +7,22 @@ const predicates = require("./predicates");
 module.exports = [
   {
     message: messages.mustBePositiveInteger,
-    property: "apiVersion",
-    predicate: predicates.isPositiveInteger
+    predicate: predicates.isPositiveInteger,
+    property: "apiVersion"
   },
   {
     message: messages.mustBePopulatedString,
-    property: "host",
-    predicate: predicates.isPopulatedString
+    predicate: predicates.isPopulatedString,
+    property: "host"
   },
   {
     message: messages.mustBePopulatedString,
-    property: "password",
-    predicate: predicates.isPopulatedString
+    predicate: predicates.isPopulatedString,
+    property: "password"
   },
   {
     message: messages.mustBePopulatedString,
-    property: "username",
-    predicate: predicates.isPopulatedString
+    predicate: predicates.isPopulatedString,
+    property: "username"
   }
 ];

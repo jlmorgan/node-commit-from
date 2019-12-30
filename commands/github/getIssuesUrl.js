@@ -14,5 +14,5 @@ module.exports = (config, values) => flow(
   get("body"),
   values.selector,
   replace("{/number}", replace(getIssuePrefix(config), "/", getIssueId(values))),
-  value => value ? value : Promise.reject("No issues URL specified for issue source.")
+  value => (value ? value : Promise.reject("No issues URL specified for issue source."))
 );

@@ -11,6 +11,6 @@ const getSource = get("source");
 
 module.exports = values => set(
   "issueSource",
-  getOwner(values) ? "owner" : (getParent(values) || getSource(values) || "current"),
+  getOwner(values) ? "owner" : getParent(values) || getSource(values) || "current",
   values
 );
