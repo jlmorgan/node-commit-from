@@ -38,7 +38,7 @@ const UNKNOWN_ERROR = 600;
  * @returns {Promise}
  */
 const handleClientErrors = pipe(
-  get("body.message"),
+  response => get("message", response.json()),
   Promise.reject
 );
 
@@ -51,7 +51,7 @@ const handleClientErrors = pipe(
  * @returns {Promise}
  */
 const handleServerErrors = pipe(
-  get("statusMessage"),
+  get("statusText"),
   Promise.reject
 );
 
@@ -63,7 +63,7 @@ const handleServerErrors = pipe(
  * @return {Promise}
  */
 function handleRequestErrors(response) {
-  const statusCode = get("statusCode", response);
+  const statusCode = get("status", response);
   let result = null;
 
   if (statusCode >= CLIENT_ERROR && statusCode < SERVER_ERROR) {
