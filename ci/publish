@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2155 # Declare and assign separately to avoid masking return values.
+
+##
+# Setup environment.
+#
+# @see https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
+##
+set -o errexit  # Exit immediately if pipeline fails.
+set -o errtrace # Subshells inherit ERR trap.
+set -o pipefail # Return last value of failing pipeline.
+
+declare PROJECT_HOME="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
+
+cd "${PROJECT_HOME}" || exit 1;
+
+npm publish
