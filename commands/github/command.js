@@ -2,6 +2,7 @@
 
 // Third Party
 const entities = require("entities");
+const fetch = require("node-fetch");
 const get = require("lodash/fp/get");
 const getOr = require("lodash/fp/getOr");
 const handlebars = require("handlebars");
@@ -15,14 +16,11 @@ const clientOptions = require("./clientOptions");
 const createApiRepoUrl = require("./createApiRepoUrl");
 const getIssuesUrl = require("./getIssuesUrl");
 const getRepoRemoteUrl = require("./getRepoRemoteUrl");
-const handleIssueResponse = require("./handleIssueResponse");
 const handleRequestErrors = require("./handleRequestErrors");
 const readFile = require("../../lib/fs/readFile");
-const request = require("../../lib/request");
 const resolveFilePath = require("../../src/util/resolveFilePath");
 const setIssueSelector = require("./setIssueSelector");
 const setIssueSource = require("./setIssueSource");
-const setValue = require("../../src/util/setValue");
 
 /**
  * Workflow:
@@ -45,26 +43,25 @@ module.exports = (config, argv) => Promise.resolve(argv)
     setIssueSelector
   ))
   .then(values => getRepoRemoteUrl(getOr("origin", "remote", values))
-    .then(pipe(
-      createApiRepoUrl,
-      setValue("url", pick(clientOptions, get("github", config))),
-      applyRequestOptions,
-      request
+    .then(createApiRepoUrl)
+    .then(repoUrl => fetch(
+      repoUrl,
+      applyRequestOptions(pick(clientOptions, get("github", config)))
     ))
     .then(handleRequestErrors)
+    .then(response => response.json())
     .then(getIssuesUrl(config, values))
   )
-  .then(pipe(
-    setValue("url", pick(clientOptions, get("github", config))),
-    applyRequestOptions,
-    request
+  .then(issuesUrl => fetch(
+    issuesUrl,
+    applyRequestOptions(pick(clientOptions, get("github", config)))
   ))
   .then(handleRequestErrors)
-  .then(handleIssueResponse)
+  .then(response => response.json())
   .then(data => readFile(resolveFilePath(getOr(get("github.template", config), "template", argv)), "utf8")
     .then(pipe(
       handlebars.compile,
-      template => template(get("body", data)),
+      template => template(data),
       entities.decode,
       console.log
     ))
