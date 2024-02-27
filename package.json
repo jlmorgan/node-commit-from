@@ -11,7 +11,7 @@
     "email": "justin.l.morgan@gmail.com"
   },
   "license": "MIT",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "bin": {
     "commit-from": "bin/commit-from"
   },
@@ -26,8 +26,8 @@
     "jira-client": "^8.2.2",
     "lodash": "^4.17.21",
     "lodash-fantasy": "^1.0.1",
+    "node-fetch": "^2.7.0",
     "properties": "^1.2.1",
-    "request": "^2.88.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
