@@ -3,7 +3,7 @@
 "use strict";
 
 // Third Party
-const yargs = require("yargs");
+const yargs = require("yargs")(process.argv.slice(2));
 
 // Project
 const jira = require("../commands/jira");
@@ -11,7 +11,7 @@ const github = require("../commands/github");
 const loadConfig = require("../src/config/load");
 
 loadConfig()
-  .then(config => yargs.usage("$0 <command>")
+  .then(config => yargs
     .command(github(config))
     .command(jira(config))
     .help("h")
@@ -19,7 +19,8 @@ loadConfig()
     .alias("v", "version")
     .version()
     .strict()
+    .usage("$0 <command>")
     .wrap(yargs.terminalWidth())
-    .argv
+    .parse()
   )
   .catch(console.error);
